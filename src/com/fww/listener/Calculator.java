@@ -27,7 +27,7 @@ class MyCalculator extends Frame{
         button = new Button("=");
         label = new Label("+");
 
-        button.addActionListener(new MyCalculatorListener(this));
+        button.addActionListener(new MyCalculatorListener());
         setLayout(new FlowLayout());
 
         add(textField1);
@@ -39,19 +39,17 @@ class MyCalculator extends Frame{
         setVisible(true);
         pack();
     }
-}
 
-class MyCalculatorListener implements ActionListener{
+    //监听器类
+    //内部类最大的好处就是可以畅通无阻的访问外部类的属性和方法
+    private class MyCalculatorListener implements ActionListener{
 
-    //在一个类里组合另外一个类
-    MyCalculator myCalculator=null;
-    public MyCalculatorListener(MyCalculator myCalculator){
-        this.myCalculator = myCalculator;
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        int n1 = Integer.parseInt(myCalculator.textField1.getText());
-        int n2 = Integer.parseInt(myCalculator.textField2.getText());
-        myCalculator.textField3.setText(""+(n1+n2));
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int n1 = Integer.parseInt(textField1.getText());
+            int n2 = Integer.parseInt(textField2.getText());
+            textField3.setText(""+(n1+n2));
+        }
     }
 }
+
